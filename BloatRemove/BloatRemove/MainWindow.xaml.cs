@@ -43,6 +43,7 @@ namespace BloatRemove
             }
 
             UpdatePackageList();
+            lblCount.Content = "Nb Pkg found : " + packageApps.Count();
 
 
 
@@ -109,10 +110,10 @@ namespace BloatRemove
                 {
                     packageApp = new PackageApp
                     {
-                        PackageFullName = stdOutput.Remove(0, 8),
-                        GooglePlayLink = "https://play.google.com/store/apps/details?id=" + stdOutput.Remove(0, 8)
+                        PackageFullName = stdOutput.Remove(0, 8).Trim(' '),
+                        GooglePlayLink = "https://play.google.com/store/apps/details?id=" + stdOutput.Remove(0, 8).Trim(' ')
                     };
-                    packageApps.Add(packageApp);
+                    if (packageApp.PackageFullName.Trim(' ') != "") packageApps.Add(packageApp);
                 }
             }
             packageAppDataGrid.ItemsSource = packageApps;
@@ -122,38 +123,43 @@ namespace BloatRemove
         {
 
             System.Windows.Data.CollectionViewSource packageAppViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("packageAppViewSource")));
-            // Charger les données en définissant la propriété CollectionViewSource.Source :
             packageAppViewSource.Source = packageApps;
+
         }
 
-        public string GetPckTitle(string url)
+      
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
-            string res = "";
+            for (int i = 0; i < packageApps.Count; i++)
+            {
+                packageApps[i] = UpdateDataOfPackage(packageApps.ElementAt(i));
+                //lblCountUpdate.Content = " Updated Data : " + (i + 1) + " / " + packageApps.Count;
+
+            }
+
+
+        }
+
+        private PackageApp UpdateDataOfPackage(PackageApp pkg)
+        {
 
             HtmlWeb web = new HtmlWeb();
-            HtmlDocument doc = web.Load(url);
+            HtmlDocument doc = web.Load(pkg.GooglePlayLink);
 
             try
             {
                 HtmlNode node = doc.DocumentNode.SelectNodes("/html/body/div[1]/div[4]/c-wiz/div/div[2]/div/div/main/c-wiz[1]/c-wiz[1]/div/div[2]/div/div[1]/c-wiz[1]/h1/span").First();
+               pkg.Title = node.InnerText;
 
-                res = node.InnerText;
+                //node = doc.DocumentNode.SelectNodes("/html/body/div[1]/div[4]/c-wiz[3]/div/div[2]/div/div/main/c-wiz[1]/c-wiz[1]/div/div[1]/div/img").First();
+                //pkg.Ico = node.GetAttributeValue("src", "");
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                res = "";
                 //throw;
             }
-            
-            return res;
-        }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            foreach (PackageApp pckApp in packageApps)
-            {
-                pckApp.Title = GetPckTitle(pckApp.GooglePlayLink);
-            }
+            return pkg;
         }
     }
 }

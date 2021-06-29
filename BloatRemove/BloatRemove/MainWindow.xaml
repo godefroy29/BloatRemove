@@ -10,7 +10,7 @@
         <CollectionViewSource x:Key="packageAppViewSource" d:DesignSource="{d:DesignInstance {x:Type local:PackageApp}, CreateList=True}"/>
     </Window.Resources>
     <Grid DataContext="{StaticResource packageAppViewSource}">
-        <Button x:Name="Check" Content="Button" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="75" Click="Check_Click"/>
+        <Button x:Name="Check" Content="Get Pck List" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="75" Click="Check_Click"/>
         <DataGrid x:Name="packageAppDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" Margin="10,35,10,10" RowDetailsVisibilityMode="VisibleWhenSelected">
             <DataGrid.Columns>
                 <DataGridTextColumn x:Name="packageFullNameColumn" Binding="{Binding PackageFullName}" Header="Package Full Name" SortDirection="Ascending"/>
@@ -26,7 +26,9 @@
 
             </DataGrid.Columns>
         </DataGrid>
-        <Button Content="Button" HorizontalAlignment="Left" Margin="101,10,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
+        <Button Content="Update Data" HorizontalAlignment="Left" Margin="101,10,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
+        <Label x:Name="lblCount" Content="&lt;NbPkgFound&gt;" HorizontalAlignment="Left" Margin="181,4,0,0" VerticalAlignment="Top" Width="113"/>
+        <Label x:Name="lblCountUpdate" Content="&lt;NbUpdate&gt;" HorizontalAlignment="Left" Margin="299,4,0,0" VerticalAlignment="Top" Width="113"/>
 
     </Grid>
 </Window>
