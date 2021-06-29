@@ -1,0 +1,32 @@
+﻿<Window x:Class="BloatRemove.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BloatRemove"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800" Loaded="Window_Loaded">
+    <Window.Resources>
+        <CollectionViewSource x:Key="packageAppViewSource" d:DesignSource="{d:DesignInstance {x:Type local:PackageApp}, CreateList=True}"/>
+    </Window.Resources>
+    <Grid DataContext="{StaticResource packageAppViewSource}">
+        <Button x:Name="Check" Content="Button" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="75" Click="Check_Click"/>
+        <DataGrid x:Name="packageAppDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" Margin="10,35,10,10" RowDetailsVisibilityMode="VisibleWhenSelected">
+            <DataGrid.Columns>
+                <DataGridTextColumn x:Name="packageFullNameColumn" Binding="{Binding PackageFullName}" Header="Package Full Name" SortDirection="Ascending"/>
+                <DataGridTextColumn x:Name="googlePlayLinkColumn" Binding="{Binding GooglePlayLink}" Header="Google Play Link" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="TitleColumn" Binding="{Binding Title}" Header="Title" Width="SizeToHeader"/>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Click="UninstallApp">Uninstall</Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button Content="Button" HorizontalAlignment="Left" Margin="101,10,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
+
+    </Grid>
+</Window>

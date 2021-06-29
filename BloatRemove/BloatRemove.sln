@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.1525
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BloatRemove", "BloatRemove\BloatRemove.csproj", "{8514876C-6B51-4CE6-A7F6-FB2EDF3D160A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8514876C-6B51-4CE6-A7F6-FB2EDF3D160A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8514876C-6B51-4CE6-A7F6-FB2EDF3D160A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8514876C-6B51-4CE6-A7F6-FB2EDF3D160A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8514876C-6B51-4CE6-A7F6-FB2EDF3D160A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3CC11EA3-36A4-4B2E-827D-03AA0B776A34}
+	EndGlobalSection
+EndGlobal
